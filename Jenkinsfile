@@ -60,14 +60,16 @@ pipeline {
         }
 
         stage('Deploy to K8s') {
-            sh '''
-                kubectl version --client
-                kubectl get nodes
-                kubectl set image deployment/department-svc \
-                    department-svc=${IMAGE_NAME}:${BUILD_NUMBER}
-                kubectl rollout status deployment/department-svc
+            steps {
+                sh '''
+                    kubectl version --client
+                    kubectl get nodes
+                    kubectl set image deployment/department-svc \
+                        department-svc=${IMAGE_NAME}:${BUILD_NUMBER}
+                    kubectl rollout status deployment/department-svc
 
-            '''
+                '''
+            }
         }
     }
 }
