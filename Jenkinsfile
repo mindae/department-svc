@@ -58,5 +58,16 @@ pipeline {
                 sh 'docker push ${IMAGE_NAME}:${BUILD_NUMBER}'
             }
         }
+
+        stage('Deploy to K8s') {
+            sh '''
+                kubectl version --client
+                kubectl get nodes
+                kubectl set image deployment/department-svc \
+                    department-svc=${IMAGE_NAME}:${BUILD_NUMBER}
+                kubectl rollout status deployment/department-svc
+
+            '''
+        }
     }
 }
