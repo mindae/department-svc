@@ -50,4 +50,5 @@ Icon\r
 .VolumeIcon.icns
 
 # Temporary or cache files
-$RECYCLE.BIN/
+$RECYCLE.BIN/data/*.mv.db
+data/*.trace.db
