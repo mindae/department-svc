@@ -52,3 +52,6 @@ Icon\r
 # Temporary or cache files
 $RECYCLE.BIN/data/*.mv.db
 data/*.trace.db
+
+data/*.mv.db
+data/*.trace.db
