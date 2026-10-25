@@ -1,4 +1,8 @@
 spring:
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data-local.sql
   h2:
     console:
       enabled: true
