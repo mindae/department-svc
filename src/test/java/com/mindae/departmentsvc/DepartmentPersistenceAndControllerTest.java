@@ -170,6 +170,21 @@ class DepartmentPersistenceAndControllerTest {
     }
 
     @Test
+    void shouldRejectDepartmentNamesLongerThanColumnLimit() throws Exception {
+        String longName = "a".repeat(256);
+
+        mockMvc.perform(post("/api/v1/departments")
+                        .contentType("application/json")
+                        .content("{\"name\":\"" + longName + "\"}"))
+                .andExpect(status().isBadRequest());
+
+        mockMvc.perform(put("/api/v1/departments/200")
+                        .contentType("application/json")
+                        .content("{\"name\":\"" + longName + "\"}"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void shouldReturnNotFoundForMissingUpdateAndDeleteTargets() throws Exception {
         mockMvc.perform(put("/api/v1/departments/999")
                         .contentType("application/json")

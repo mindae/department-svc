@@ -12,7 +12,8 @@ spring:
     defer-datasource-initialization: true
   sql:
     init:
-      mode: never
+      mode: always
+      schema-locations: classpath:schema.sql
   h2:
     console:
       enabled: false
